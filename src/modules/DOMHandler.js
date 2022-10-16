@@ -1,12 +1,11 @@
-import WeatherReport from "./weatherReport"
+import getWeather from "./weatherReport"
 
 const searchField = document.querySelector('#search-bar')
 
-
 searchField.addEventListener('keydown', (e) => {
-  if(e.key === "Enter" && e.keyCode === 13) {
+  if(e.key === "Enter" && e.keyCode === 13 && e.target.value !=='') {
     const cityName = e.target.value
-    WeatherReport.getWeather(cityName)
+    getWeather(cityName)
     searchField.value =''
   }
 })
