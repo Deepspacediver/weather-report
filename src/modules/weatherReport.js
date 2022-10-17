@@ -1,4 +1,3 @@
-import pick from 'lodash.pick';
 
 const getCurrentWeather = async (city) => {
   try {
@@ -17,31 +16,43 @@ const getCurrentWeather = async (city) => {
   }
 };
 
+const getDataForFirstDay = (weatherResponse) => {
+  const firstDayData = weatherResponse.list[0];
+  const firstDay = {
+    locationInfo: {
+      country: weatherResponse.city.country,
+      cityName: weatherResponse.city.name,
+      sunrise: weatherResponse.city.sunrise,
+      sunset: weatherResponse.city.sunset,
+      date: firstDayData.dt,
+    },
+    weatherInfo: {
+      temp: firstDayData.main.temp,
+      humidity: firstDayData.main.humidity,
+      description: firstDayData.weather[0].description,
+      iconId: firstDayData.weather[0].icon,
+      wind: firstDayData.wind.speed,
+    },
+  };
+  return firstDay;
+}
+
+/* const getDataFor6Days = (arrayOfDays) => {
+  const dataFor6Days = []
+  arrayOfDays.forEach((day, index) => {
+
+  })   
+} */
 const getWeatherData = async (cityName) => {
   try {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
-    // Return data: as an array of object ->
-    // Basic Data, Data for the current day, 3rd item is an array of 6 days
-    const weatherDataFirstDay = weatherData.list[0];
-    const firstDay = {
-      locationInfo: {
-        country: weatherData.city.country,
-        cityName: weatherData.city.name,
-        sunrise: weatherData.city.sunrise,
-        sunset: weatherData.city.sunset,
-        date: weatherDataFirstDay.dt,
-      },
-      weatherInfo: {
-        temp: weatherDataFirstDay.main.temp,
-        humidity: weatherDataFirstDay.main.humidity,
-        description: weatherDataFirstDay.weather[0].description,
-        iconId: weatherDataFirstDay.weather[0].icon,
-        wind: weatherDataFirstDay.wind.speed,
-      },
-    };
+    // Return data: as an array ->
+    // General data with info for the current day, 2nd item is an array of 6 days
+    const firstDay = getDataForFirstDay(weatherData)
 
     const remainderOfDays = weatherData.list.slice(1);
+    // const remainderDaysDataArray = []
     console.log(remainderOfDays, firstDay);
 
     /* const specificWeatherData = {
