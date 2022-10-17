@@ -22,15 +22,33 @@ const getWeatherData = async (cityName) => {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
     // Return data: as an array of object ->
-    // Basic Data, Data for the current day, Use for loop for next 6 days
-
-    const specificWeatherData = {
-      name: weatherData.name,
+    // Basic Data, Data for the current day, 3rd item is an array of 6 days
+    const weatherDataFirstDay = weatherData.list[0];
+    const firstDay = {
+      locationInfo: {
+        country: weatherData.city.country,
+        cityName: weatherData.city.name,
+        sunrise: weatherData.city.sunrise,
+        sunset: weatherData.city.sunset,
+        date: weatherDataFirstDay.dt,
+      },
+      weatherInfo: {
+        temp: weatherDataFirstDay.main.temp,
+        humidity: weatherDataFirstDay.main.humidity,
+        description: weatherDataFirstDay.weather[0].description,
+        iconId: weatherDataFirstDay.weather[0].icon,
+        wind: weatherDataFirstDay.wind.speed,
+      },
     };
+
+    const remainderOfDays = weatherData.list.slice(1);
+    console.log(remainderOfDays, firstDay);
+
+    /* const specificWeatherData = {
+      name: weatherData.name,
+    }; */
     console.log(weatherData);
     // ({specificWeatherData:main.temp_max} = await weatherInfo)
-    console.log({ specificWeatherData });
-    return specificWeatherData;
   } catch (err) {
     console.log(err);
   }
