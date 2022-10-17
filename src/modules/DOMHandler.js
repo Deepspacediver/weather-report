@@ -1,4 +1,4 @@
-import { getCurrentWeather, getWeatherData } from './weatherReport';
+import { getWeatherData, determineDayOrNight } from './weatherReport';
 
 const searchField = document.querySelector('#search-bar');
 
@@ -8,8 +8,10 @@ searchField.addEventListener('keydown', async (e) => {
     /* const weatherData = getWeather(cityName)
     console.log(weatherData) */
     const DATAWEATHER = await getWeatherData(cityName);
-    console.log({ DATAWEATHER });
-    /* .catch((err) => console.log(err)) */
+    console.log(DATAWEATHER);
+    const dayValue = determineDayOrNight(DATAWEATHER)
+    console.log(dayValue)
+    // console.log(determineDayOrNight(DATAWEATHER))
     searchField.value = '';
   }
 });

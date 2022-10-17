@@ -54,8 +54,9 @@ const getWeatherData = async (cityName) => {
   try {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
-    // Return data: as an object ->
-    // General data and info for the current day, 2nd item is an array of 6 days
+    /* Return data: as an object ->
+       General data and info for the current day, 2nd item is an array of 6 days 
+    */
     const firstDay = getDataForFirstDay(weatherData);
     const remainderOfDays = weatherData.list.slice(1);
     const remainderDaysData = getDataForRestOfWeek(remainderOfDays);
@@ -69,5 +70,15 @@ const getWeatherData = async (cityName) => {
     console.log(err);
   }
 };
+// {firstDay : { locationInfo : { sunset } } }
+const determineDayOrNight = (weatherData) => {
+  if(weatherData === undefined) return
+  const sunsetValue = weatherData.firstDay.locationInfo.sunset
+  console.log({ sunsetValue });
 
-export { getCurrentWeather, getWeatherData };
+  let timeOfDay;
+  if(new Date().valueOf() / 1000 < sunsetValue) timeOfDay = "day"
+  else timeOfDay = "night"
+  return timeOfDay
+};
+export { getCurrentWeather, getWeatherData, determineDayOrNight };
