@@ -1,4 +1,3 @@
-
 const getCurrentWeather = async (city) => {
   try {
     const data = await fetch(
@@ -35,31 +34,37 @@ const getDataForFirstDay = (weatherResponse) => {
     },
   };
   return firstDay;
-}
+};
 
-/* const getDataFor6Days = (arrayOfDays) => {
-  const dataFor6Days = []
-  arrayOfDays.forEach((day, index) => {
+const getDataForRestOfWeek = (arrayOfDays) => {
+  const dataFor6Days = [];
+  arrayOfDays.forEach((day) => {
+    const dayObject = {
+      date: day.dt,
+      temp: day.main.temp,
+      description: day.weather[0].description,
+      iconId: day.weather[0].icon,
+    };
+    dataFor6Days.push(dayObject);
+  });
+  return dataFor6Days;
+};
 
-  })   
-} */
 const getWeatherData = async (cityName) => {
   try {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
-    // Return data: as an array ->
-    // General data with info for the current day, 2nd item is an array of 6 days
-    const firstDay = getDataForFirstDay(weatherData)
-
+    // Return data: as an object ->
+    // General data and info for the current day, 2nd item is an array of 6 days
+    const firstDay = getDataForFirstDay(weatherData);
     const remainderOfDays = weatherData.list.slice(1);
-    // const remainderDaysDataArray = []
-    console.log(remainderOfDays, firstDay);
+    const remainderDaysData = getDataForRestOfWeek(remainderOfDays);
 
-    /* const specificWeatherData = {
-      name: weatherData.name,
-    }; */
-    console.log(weatherData);
-    // ({specificWeatherData:main.temp_max} = await weatherInfo)
+    const dataObject = {
+      firstDay,
+      remainderDaysData,
+    };
+    return dataObject;
   } catch (err) {
     console.log(err);
   }
