@@ -61,16 +61,26 @@ div.search-wrapper {
 
 input#search-bar {
   -webkit-appearance: none;
-  padding: 1vh;
+  font-size: 1rem;
+  padding: .3rem;
   width: 50%;
   appearance: none;
 }
 
 .search-wrapper button {
-  padding: 1vh;
+  padding: .3rem;
+  font-size: 1rem;
+
 }
 
 header button.degree-unit{
-  max-width: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1rem;
+  padding: .3rem;
+  width: 8%;
+}
 
+.bold {
+  font-weight: bold !important;
 }
