@@ -70,15 +70,15 @@ const getWeatherData = async (cityName) => {
     console.log(err);
   }
 };
-// {firstDay : { locationInfo : { sunset } } }
+
 const determineDayOrNight = (weatherData) => {
-  if(weatherData === undefined) return
-  const sunsetValue = weatherData.firstDay.locationInfo.sunset
+  if (weatherData === undefined) return;
+  const sunsetValue = weatherData.firstDay.locationInfo.sunset;
   console.log({ sunsetValue });
 
   let timeOfDay;
-  if(new Date().valueOf() / 1000 < sunsetValue) timeOfDay = "day"
-  else timeOfDay = "night"
-  return timeOfDay
+  if (new Date().valueOf() / 1000 < sunsetValue) timeOfDay = 'day';
+  else timeOfDay = 'night';
+  return timeOfDay;
 };
 export { getCurrentWeather, getWeatherData, determineDayOrNight };

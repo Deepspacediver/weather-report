@@ -1,0 +1,71 @@
+:root {
+  --color-primary-dark: #141414;
+  font-size: 1vw;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  background-color: var(--color-primary-dark);
+  background-image: url('./assets/images/pexels-lukas-296234.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Header */
+
+header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--color-primary-dark);
+  opacity: 0.9;
+  color: #c0c0c0;
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-primary-dark);
+  gap: 5%;
+  padding-bottom: 5px;
+
+}
+header * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.logo-wrapper {
+  padding-left: 5%;
+  justify-content: center;
+}
+div.logo-wrapper h1 {
+  font-size: max(25px, 2.2rem)
+}
+
+img.weather-icon-header {
+  height: auto;
+  max-width: 40%;
+}
+
+div.search-wrapper {
+  display: flex;
+}
+
+input#search-bar {
+  -webkit-appearance: none;
+  padding: 1vh;
+  appearance: none;
+}
+
+.search-wrapper button {
+  padding: 1vh;
+}
+
+header button.degree-unit{
+
+}

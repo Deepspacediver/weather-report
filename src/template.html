@@ -7,6 +7,26 @@
     <title>Weather Report</title>
   </head>
   <body>
-        <input type="text" id="search-bar" name="search-bar">
+    <header id="main-content-header">
+      <div class="logo-wrapper">
+        <img
+          src="./assets/images/header-logo-small.png"
+          srcset="./assets/images/header-logo-small.png"
+          class="weather-icon-header"
+          alt="weather-logo"
+        />
+        <h1 class="page-title">Weather Report</h1>
+      </div>
+      <div class="search-wrapper">
+        <input type="text" id="search-bar" name="search-bar" />
+        <button class="search btn">Search</button>
+      </div>
+      <button class="degree-unit btn">
+        <p>F</p>
+        <p>C</p>
+      </button>
+    </header>
+    <main id="main-content-body"></main>
+    <div id="footer"></div>
   </body>
 </html>
