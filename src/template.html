@@ -23,11 +23,45 @@
       </div>
       <button class="degree-unit btn">
         <span class="celsius bold">°C</span>
-         /
+        /
         <span class="farenheit">°F</span>
       </button>
     </header>
-    <main id="main-content-body"></main>
+    <main id="main-content-body">
+      <div class="weather-wrapper">
+        <div class="current-day container">
+          <h2 class="current-day heading">Today's Forecast</h2>
+          <div class="current-day content">
+            <section class="left-side-content">
+              <span class="current-day weather-description">Heavy rain</span>
+              <div class="img-wrapper">
+                <img
+                  src="./assets/images/header-logo-small.png"
+                  alt=""
+                  class="current-day weather-icon"
+                />
+              </div>
+              <li class="current-day temperature">
+                Temperature:
+                <small class="current day temperature-value">15%</small>
+              </li>
+              <li class="current-day humidity">
+                Humidmity:
+                <small>humid!</small>
+              </li>
+              <li class="current-day wind">
+                Wind speed:
+                <small>20km/h</small>
+              </li>
+            </section>
+            <section class="right-side-content">
+              <span class="current-day location">location</span>
+              <span class="current-day date">18 October 2022</span>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
     <div id="footer"></div>
   </body>
 </html>

@@ -1,5 +1,6 @@
 :root {
   --color-primary-dark: #141414;
+  --color-primary-grey: #676767;
   font-size: 1vw;
 }
 *::before,
@@ -25,16 +26,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary-dark);
-  opacity: 0.9;
-  color: #c0c0c0;
-  font-weight: bold;
-  border-bottom: 1px solid var(--color-primary-dark);
   gap: 5%;
   padding-bottom: 5px;
   padding-left: 15px;
   padding-right: 15px;
 
+  background-color: var(--color-primary-dark);
+  border-bottom: 1px solid var(--color-primary-dark);
+  opacity: 0.9;
+  color: #c0c0c0;
+  font-weight: bold;
 }
 header > * {
   display: flex;
@@ -43,9 +44,10 @@ header > * {
 }
 div.logo-wrapper {
   justify-content: center;
+  gap: 10px;
 }
 div.logo-wrapper h1 {
-  font-size: max(25px, 2.2rem);
+  font-size: max(18px, 2.2rem);
   width: 25vw;
 }
 
@@ -60,27 +62,97 @@ div.search-wrapper {
 }
 
 input#search-bar {
-  -webkit-appearance: none;
-  font-size: 1rem;
-  padding: .3rem;
   width: 50%;
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  font-size: max(15px, 1rem);
   appearance: none;
 }
 
 .search-wrapper button {
-  padding: .3rem;
-  font-size: 1rem;
-
+  font-size: clamp(15px, 50%, 1rem);
+  padding: 0.5rem;
 }
 
-header button.degree-unit{
+header button.degree-unit {
   display: flex;
   justify-content: space-evenly;
-  font-size: 1rem;
-  padding: .3rem;
-  width: 8%;
+  padding: 0.5rem;
+  max-width: 12%;
+  font-size: max(15px, 1rem);
 }
 
 .bold {
   font-weight: bold !important;
+}
+
+/* Main Content 
+\/ \/ \/ \/ \/ \/ \/ 
+*/
+main{
+  margin-top: 2vh;
+  height: 100%;
+  width: 100%;
+}
+div.weather-wrapper {
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 2rem;
+  opacity: 0.9;
+  background-color: var(--color-primary-dark);
+  text-align: center;
+}
+
+h2.current-day.heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.current-day.container{
+  width: 90%;
+  height: 50%;
+  margin: 0 auto;
+  background-color: var(--color-primary-grey);
+
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+
+  font-size: 1.5rem;
+}
+
+div.current-day.content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+}
+
+section.left-side-content{
+  padding: 1vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .6fr 2fr;
+  grid-auto-rows: 1fr;
+}
+section.left-side-content > *{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+span.current-day.weather-description {
+  grid-column: span 2;
+}
+
+
+
+
+
+section.right-side-content{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 15%;
+  padding-top: 15%;
+}
+section.right-side-content > span{
+  flex: 0 0 100%;
 }
