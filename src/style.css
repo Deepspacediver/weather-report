@@ -3,7 +3,8 @@
   font-size: 1vw;
 }
 *::before,
-*::after {
+*::after,
+* {
   box-sizing: border-box;
 }
 html,
@@ -22,9 +23,8 @@ html {
 header {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   background-color: var(--color-primary-dark);
   opacity: 0.9;
   color: #c0c0c0;
@@ -32,19 +32,21 @@ header {
   border-bottom: 1px solid var(--color-primary-dark);
   gap: 5%;
   padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 
 }
-header * {
+header > * {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 div.logo-wrapper {
-  padding-left: 5%;
   justify-content: center;
 }
 div.logo-wrapper h1 {
-  font-size: max(25px, 2.2rem)
+  font-size: max(25px, 2.2rem);
+  width: 25vw;
 }
 
 img.weather-icon-header {
@@ -53,12 +55,14 @@ img.weather-icon-header {
 }
 
 div.search-wrapper {
-  display: flex;
+  width: 100%;
+  display: inline-block;
 }
 
 input#search-bar {
   -webkit-appearance: none;
   padding: 1vh;
+  width: 50%;
   appearance: none;
 }
 
@@ -67,5 +71,6 @@ input#search-bar {
 }
 
 header button.degree-unit{
+  max-width: 15%;
 
 }
