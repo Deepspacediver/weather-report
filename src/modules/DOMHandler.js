@@ -1,6 +1,6 @@
 import { getWeatherData, determineDayOrNight } from './weatherReport';
 
-const searchField = document.querySelector('#search-bar');
+const searchField = document.querySelector('#search-wrapper__search-bar');
 
 searchField.addEventListener('keydown', async (e) => {
   if (e.key === 'Enter' && e.keyCode === 13 && e.target.value !== '') {
