@@ -7,56 +7,58 @@
     <title>Weather Report</title>
   </head>
   <body>
-    <header id="main-content-header">
+    <header id="main-header">
       <div class="logo-wrapper">
         <img
           src="./assets/images/header-logo-small.png"
           srcset="./assets/images/header-logo-small.png"
-          class="weather-icon-header"
-          alt="weather-logo"
+          class="logo-wrapper__page-icon"
+          alt="page-icon"
         />
-        <h1 class="page-title">Weather Report</h1>
+        <h1 class="logo-wrapper__title">Weather Report</h1>
       </div>
       <div class="search-wrapper">
-        <input type="text" id="search-bar" name="search-bar" />
-        <button class="search btn">Search</button>
+        <input type="text" id="search-wrapper__search-bar" name="search-bar" />
+        <button class="search-wrapper__search-btn">Search</button>
       </div>
-      <button class="degree-unit btn">
-        <span class="celsius bold">°C</span>
+      <button class="unit-btn">
+        <span class="unit-btn__celsius">°C</span>
         /
-        <span class="farenheit">°F</span>
+        <span class="unit-btn__farenheit">°F</span>
       </button>
     </header>
-    <main id="main-content-body">
-      <div class="weather-wrapper">
-        <div class="current-day container">
-          <h2 class="current-day heading">Today's Forecast</h2>
-          <div class="current-day content">
-            <section class="left-side-content">
-              <span class="current-day weather-description">Heavy rain</span>
-              <div class="img-wrapper">
+    <main id="main-body">
+      <div class="day1-wrapper">
+        <div class="day1-container">
+          <h2 class="day1-container__heading">Today's Forecast</h2>
+          <div class="day1-container__content content-block">
+            <section class="content-block__left-content left-section">
+              <span class="left-section__weather-description">Heavy rain</span>
+              <div class="left-section__img-wrapper">
                 <img
                   src="./assets/images/header-logo-small.png"
                   alt=""
-                  class="current-day weather-icon"
+                  class="left-section__weather-icon"
                 />
               </div>
-              <li class="current-day temperature">
+
+              <li class="left-section__temperature">
                 Temperature:
-                <small class="current day temperature-value">15%</small>
+                <small class="left-section__temperature-value">15%</small>
               </li>
-              <li class="current-day humidity">
+              <li class="left-section__humidity">
                 Humidmity:
-                <small>humid!</small>
+                <small class="left-section__humidity-value">humid!</small>
               </li>
-              <li class="current-day wind">
+              <li class="left-section__wind">
                 Wind speed:
-                <small>20km/h</small>
+                <small class="left-section__wind-value">20km/h</small>
               </li>
             </section>
-            <section class="right-side-content">
-              <span class="current-day location">location</span>
-              <span class="current-day date">18 October 2022</span>
+
+            <section class="content-block__right-content right-section">
+              <small class="right-section__location">location</small>
+              <small class="right-section__date">18 October 2022</small>
             </section>
           </div>
         </div>

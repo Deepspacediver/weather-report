@@ -21,7 +21,7 @@ html {
 
 /* Header */
 
-header {
+#main-header {
   width: 100%;
   display: flex;
   align-items: center;
@@ -37,31 +37,30 @@ header {
   color: #c0c0c0;
   font-weight: bold;
 }
-header > * {
+#main-header > * {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-div.logo-wrapper {
+.logo-wrapper {
   justify-content: center;
   gap: 10px;
 }
-div.logo-wrapper h1 {
+.logo-wrapper__page-icon{
+  height: auto;
+  max-width: 40%;
+}
+.logo-wrapper__title {
   font-size: max(18px, 2.2rem);
   width: 25vw;
 }
 
-img.weather-icon-header {
-  height: auto;
-  max-width: 40%;
-}
-
-div.search-wrapper {
+.search-wrapper {
   width: 100%;
   display: inline-block;
 }
 
-input#search-bar {
+#search-wrapper__search-bar {
   width: 50%;
   padding: 0.5rem;
   -webkit-appearance: none;
@@ -69,12 +68,12 @@ input#search-bar {
   appearance: none;
 }
 
-.search-wrapper button {
+.search-wrapper__search-btn {
   font-size: clamp(15px, 50%, 1rem);
   padding: 0.5rem;
 }
 
-header button.degree-unit {
+.unit-btn {
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem;
@@ -89,29 +88,25 @@ header button.degree-unit {
 /* Main Content 
 \/ \/ \/ \/ \/ \/ \/ 
 */
-main{
+#main-body{
   margin-top: 2vh;
   height: 100%;
   width: 100%;
 }
-div.weather-wrapper {
+.day1-wrapper {
   width: 85%;
-  height: 100%;
+  height: 50%;
   margin: 0 auto;
-  padding-top: 2rem;
   opacity: 0.9;
   background-color: var(--color-primary-dark);
   text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-h2.current-day.heading{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-div.current-day.container{
+.day1-container{
   width: 90%;
-  height: 50%;
+  height: 100%;
   margin: 0 auto;
   background-color: var(--color-primary-grey);
 
@@ -121,38 +116,42 @@ div.current-day.container{
   font-size: 1.5rem;
 }
 
-div.current-day.content {
+.day1-container__heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.day1-container__content.content-block {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 }
 
-section.left-side-content{
+.content-block__left-content{
   padding: 1vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: .6fr 2fr;
   grid-auto-rows: 1fr;
 }
-section.left-side-content > *{
+.content-block__left-content > *{
 display: flex;
 align-items: center;
 justify-content: center;
 }
 
-span.current-day.weather-description {
+.left-section__weather-description {
   grid-column: span 2;
 }
 
 
 
-
-
-section.right-side-content{
+.content-block__right-content{
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 15%;
   padding-top: 15%;
 }
-section.right-side-content > span{
+.right-section__location,
+.right-section__date{
   flex: 0 0 100%;
 }
