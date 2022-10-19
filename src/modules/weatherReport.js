@@ -1,8 +1,8 @@
 const getCurrentWeather = async (city) => {
   try {
     const data = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c6a89bb93d1f609fa31e7a649c08ea66&cnt=7&units=metric`,
-      /* `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c6a89bb93d1f609fa31e7a649c08ea66&units=metric` */ {
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c6a89bb93d1f609fa31e7a649c08ea66&units=metric`,
+      {
         mode: 'cors',
       }
     );
@@ -23,7 +23,8 @@ const getDataForFirstDay = (weatherResponse) => {
       cityName: weatherResponse.city.name,
       sunrise: weatherResponse.city.sunrise,
       sunset: weatherResponse.city.sunset,
-      date: firstDayData.dt,
+      date_txt: firstDayData.dt_txt,
+      data: firstDayData.dt,
     },
     weatherInfo: {
       temp: firstDayData.main.temp,
@@ -40,6 +41,7 @@ const getDataForRestOfWeek = (arrayOfDays) => {
   const dataFor6Days = [];
   arrayOfDays.forEach((day) => {
     const dayObject = {
+      date_txt: day.dt_txt,
       date: day.dt,
       temp: day.main.temp,
       description: day.weather[0].description,
@@ -54,6 +56,7 @@ const getWeatherData = async (cityName) => {
   try {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
+    console.log({ weatherData });
     /* Return data: as an object ->
        General data and info for the current day, 2nd item is an array of 6 days 
     */
