@@ -25,7 +25,11 @@ const getDataForFirstDay = (weatherResponse) => {
       sunset: weatherResponse.city.sunset,
       date_txt: firstDayData.dt_txt,
       date: firstDayData.dt,
-      timezone: weatherResponse.city.timezone
+      timezone: weatherResponse.city.timezone,
+      convertedDate: convertToLocalTime(
+        firstDayData.dt,
+        weatherResponse.city.timezone
+      ),
     },
     weatherInfo: {
       temp: firstDayData.main.temp,
@@ -87,6 +91,13 @@ const determineDayOrNight = (weatherData) => {
 };
 export { getCurrentWeather, getWeatherData, determineDayOrNight };
 
-const convertTimeToTimezone = ({ })  =>{
-
-}
+const convertToLocalTime = (dt, offset) => {
+  const systemOffsetInSeconds = new Date().getTimezoneOffset() * 60;
+  const UTCSeconds = dt;
+  const timezoneOffset = offset;
+  const converetedTime = new Date(
+    (UTCSeconds + systemOffsetInSeconds + timezoneOffset) * 1000
+  ).toUTCString();
+  console.log(converetedTime);
+  return converetedTime;
+};
