@@ -24,7 +24,8 @@ const getDataForFirstDay = (weatherResponse) => {
       sunrise: weatherResponse.city.sunrise,
       sunset: weatherResponse.city.sunset,
       date_txt: firstDayData.dt_txt,
-      data: firstDayData.dt,
+      date: firstDayData.dt,
+      timezone: weatherResponse.city.timezone
     },
     weatherInfo: {
       temp: firstDayData.main.temp,
@@ -37,7 +38,7 @@ const getDataForFirstDay = (weatherResponse) => {
   return firstDay;
 };
 
-const getDataForRestOfWeek = (arrayOfDays) => {
+/* const getDataForRestOfWeek = (arrayOfDays) => {
   const dataFor6Days = [];
   arrayOfDays.forEach((day) => {
     const dayObject = {
@@ -50,7 +51,7 @@ const getDataForRestOfWeek = (arrayOfDays) => {
     dataFor6Days.push(dayObject);
   });
   return dataFor6Days;
-};
+}; */
 
 const getWeatherData = async (cityName) => {
   try {
@@ -61,14 +62,14 @@ const getWeatherData = async (cityName) => {
        General data and info for the current day, 2nd item is an array of 6 days 
     */
     const firstDay = getDataForFirstDay(weatherData);
-    const remainderOfDays = weatherData.list.slice(1);
+    /* const remainderOfDays = weatherData.list.slice(1);
     const remainderDaysData = getDataForRestOfWeek(remainderOfDays);
 
     const dataObject = {
       firstDay,
       remainderDaysData,
-    };
-    return dataObject;
+    }; */
+    return firstDay;
   } catch (err) {
     console.log(err);
   }
@@ -76,7 +77,7 @@ const getWeatherData = async (cityName) => {
 
 const determineDayOrNight = (weatherData) => {
   if (weatherData === undefined) return;
-  const sunsetValue = weatherData.firstDay.locationInfo.sunset;
+  const sunsetValue = weatherData.locationInfo.sunset;
   console.log({ sunsetValue });
 
   let timeOfDay;
@@ -85,3 +86,7 @@ const determineDayOrNight = (weatherData) => {
   return timeOfDay;
 };
 export { getCurrentWeather, getWeatherData, determineDayOrNight };
+
+const convertTimeToTimezone = ({ })  =>{
+
+}

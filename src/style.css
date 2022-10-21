@@ -14,15 +14,21 @@ body {
 }
 html {
   background-color: var(--color-primary-dark);
-  background-image: url('./assets/images/pexels-lukas-296234.jpg');
+  background-image: url("./assets/images/pexels-lukas-296234.jpg");
+  background-color: var(--color-primary-dark);
+  background-size:cover;
   background-repeat: no-repeat;
-  background-size: cover;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 /* Header */
 
 #main-header {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +63,7 @@ html {
 .search-wrapper {
   width: 100%;
   display: block;
+  height: 100%;
 }
 
 #search-wrapper__search-bar {
@@ -64,7 +71,7 @@ html {
   width: 50%;
   padding: 0.5rem;
   -webkit-appearance: none;
-  font-size: max(15px, 1rem);
+  font-size: clamp(15px, 50%, 1rem);
   appearance: none;
 }
 
@@ -79,7 +86,8 @@ html {
   gap: 5%;
   padding: 0.5rem;
   width: 5%;
-  font-size: max(15px, 1rem);
+  font-size: clamp(15px, 50%, 1rem);
+
 }
 
 .bold {
@@ -91,31 +99,22 @@ html {
 Current day section
 */
 #main-body {
-  margin-top: 2vh;
+  margin-top: 2%;
   width: 100%;
-  height: auto; /*??*/
-}
-.day1-wrapper {
-  width: 85%;
-  height: 40%;
-  margin: 0 auto;
-  opacity: 0.9;
-  background-color: var(--color-primary-dark);
-  text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 1.5rem;
+  height:100%
+  
 }
 
 .day1-container {
-  width: 90%;
-  height: 20rem;
   margin: 0 auto;
+  margin-bottom: 2%;
+  border: 1rem solid var(--color-primary-dark);
+  opacity: 0.9;
+  width: 60%;
+  height: 45%;
   background-color: var(--color-primary-grey);
-
   display: grid;
   grid-template-rows: 1fr 8fr;
-
   font-size: 1.8rem;
   border-radius: 1.5rem;
 }
@@ -172,27 +171,17 @@ Current day section
 
 /* Week container*/
 
-.week-wrapper {
-  width: 85%;
-  height: 40%;
-  background-color: var(--color-primary-dark);
-  opacity: 0.9;
-  margin: 0 auto;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 1.5rem;
 
-  font-size: 1.3rem;
-}
 
 .week-container {
-  width: 90%;
-  height: 100%;
+  border: 1rem solid var(--color-primary-dark);
+  height: auto;
+  width: 70%;
   margin: 0 auto;
   background-color: var(--color-primary-grey);
   display: grid;
   grid-template-rows: 3rem 1fr;
+  opacity: 0.9;
   border-radius: 1.5rem;
 }
 .week-container__heading {
