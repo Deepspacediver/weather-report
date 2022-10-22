@@ -95,9 +95,16 @@ const convertToLocalTime = (dt, offset) => {
   const systemOffsetInSeconds = new Date().getTimezoneOffset() * 60;
   const UTCSeconds = dt;
   const timezoneOffset = offset;
-  const converetedTime = new Date(
+  const converetedDate = new Date(
     (UTCSeconds + systemOffsetInSeconds + timezoneOffset) * 1000
-  ).toUTCString();
-  console.log(converetedTime);
+  )
+  const converetedTime = converetedDate.toUTCString()
+  const day = new Date(
+    (UTCSeconds + systemOffsetInSeconds + timezoneOffset) * 1000
+  ).getUTCDay();
+  const hour = new Date(
+    (UTCSeconds + systemOffsetInSeconds + timezoneOffset) * 1000
+  ).getUTCHours();
+  console.log(converetedTime, day, hour );
   return converetedTime;
 };
