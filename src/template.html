@@ -28,39 +28,37 @@
       </button>
     </header>
     <main id="main-body">
-      <div class="day1-container">
+      <section class="day1-container">
         <h2 class="day1-container__heading">Today's Forecast</h2>
-        <div class="day1-container__content content-block">
-          <section class="content-block__left-content left-section">
-            <p class="left-section__weather-description">Heavy rain</p>
-            <div class="left-section__img-wrapper">
-              <img
-                src="./assets/images/header-logo-small.png"
-                alt=""
-                class="left-section__weather-icon"
-              />
-            </div>
-
-            <li class="left-section__temperature">
+        <div class="day1-container__content">
+          <div class="day1-container__icon-wrapper icon-wrapper">
+            <img
+              src="./assets/images/header-logo-small.png"
+              alt=""
+              class="icon-wrapper__weather-icon"
+            />
+          </div>
+          <div class="day1-container__weather-wrapper weather-conditions">
+            <p class="weather-conditions__weather-description">Heavy rain</p>
+            <li class="weather-conditions__temperature">
               Temperature:
-              <small class="left-section__temperature-value">15%</small>
+              <small class="weather-conditions__temperature-value">15%</small>
             </li>
-            <li class="left-section__humidity">
+            <li class="weather-conditions__humidity">
               Humidmity:
-              <small class="left-section__humidity-value">humid!</small>
+              <small class="weather-conditions__humidity-value">humid!</small>
             </li>
-            <li class="left-section__wind">
+            <li class="weather-conditions__wind">
               Wind speed:
-              <small class="left-section__wind-value">20km/h</small>
+              <small class="weather-conditions__wind-value">20km/h</small>
             </li>
-          </section>
-
-          <section class="content-block__right-content right-section">
-            <small class="right-section__location">location</small>
-            <small class="right-section__date">18 October 2022</small>
-          </section>
+          </div>
+          <div class="day1-coontainer__locale locale-wrapper">
+            <small class="locale-wrapper__location">location</small>
+            <small class="locale-wrapper__date">18 October 2022</small>
+          </div>
         </div>
-      </div>
+      </section>
       <section class="week-container">
         <h2 class="week-container__heading">Week Forecast</h2>
         <ul class="week-list">
