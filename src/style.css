@@ -14,9 +14,11 @@ body {
 }
 html {
   background-color: var(--color-primary-dark);
-  background-image: url('./assets/images/pexels-lukas-296234.jpg');
+   background-image: url('./assets/images/pexels-lukas-296234.jpg'); 
+  /*background-image: url('./assets/images/david-becker-V862kywlKkw-unsplash.jpg');*/
   background-color: pink;
   background-size: cover;
+  background-position: 10%;
   background-repeat: no-repeat;
 }
 
@@ -117,7 +119,6 @@ Current day section
   grid-template-rows: 1fr 3fr;
   font-size: 1.8rem;
   border-radius: 1.5rem;
-  min-height: 35%;
 }
 
 .day1-container__heading {
@@ -135,27 +136,25 @@ Current day section
 .weather-conditions {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-evenly;
 }
 .day1-container__icon-wrapper {
-  display: grid;
-  align-items: center;
+  width: 5vw;
 }
 .icon-wrapper__weather-icon {
-  max-width: 8rem;
-  width: 200%;
   height: auto;
+  max-width: 20%;
 }
 .day1-coontainer__locale {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 .locale-wrapper__location,
 .locale-wrapper__date {
+padding: 1rem;
 }
 
 /* Week container*/
@@ -199,8 +198,8 @@ Current day section
 }
 
 .week-list__item-icon {
-  width: 100%;
-  max-width: 3rem;
   margin-right: 1.5rem;
   height: auto;
+  align-self: top; 
+  max-width: 4rem;
 }

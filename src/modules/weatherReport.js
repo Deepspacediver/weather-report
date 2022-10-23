@@ -14,6 +14,8 @@ const getCurrentWeather = async (city) => {
     console.log(err);
   }
 };
+const capitilizeFirstLetter = (string) =>
+  string.slice(0, 1).toUpperCase() + string.slice(1);
 
 const getDataForFirstDay = (weatherResponse) => {
   const firstDayData = weatherResponse.list[0];
@@ -33,7 +35,7 @@ const getDataForFirstDay = (weatherResponse) => {
     weatherInfo: {
       temp: firstDayData.main.temp,
       humidity: firstDayData.main.humidity,
-      description: firstDayData.weather[0].description,
+      description: capitilizeFirstLetter(firstDayData.weather[0].description),
       iconId: firstDayData.weather[0].icon,
       wind: firstDayData.wind.speed,
     },
@@ -66,7 +68,7 @@ const getNextValidDays = (
         date: date.dt,
         convertedDate: convertToLocalTime(date.dt, zoneOffset),
         temp: date.main.temp,
-        description: date.weather[0].description,
+        description:capitilizeFirstLetter(date.weather[0].description),
         iconId: date.weather[0].icon,
       };
       validDaysArray.push(dayObject);
