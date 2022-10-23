@@ -11,7 +11,7 @@ const getCurrentWeather = async (city) => {
       return data;
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.code);
   }
 };
 const capitilizeFirstLetter = (string) =>
@@ -33,7 +33,7 @@ const getDataForFirstDay = (weatherResponse) => {
       ),
     },
     weatherInfo: {
-      temp: firstDayData.main.temp,
+      temp: firstDayData.main.temp + '°',
       humidity: firstDayData.main.humidity,
       description: capitilizeFirstLetter(firstDayData.weather[0].description),
       iconId: firstDayData.weather[0].icon,
@@ -67,7 +67,7 @@ const getNextValidDays = (
         date_txt: date.dt_txt,
         date: date.dt,
         convertedDate: convertToLocalTime(date.dt, zoneOffset),
-        temp: date.main.temp,
+        temp: date.main.temp + '°',
         description:capitilizeFirstLetter(date.weather[0].description),
         iconId: date.weather[0].icon,
       };

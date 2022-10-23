@@ -1,5 +1,5 @@
 import { getWeatherData, determineDayOrNight, } from './weatherReport';
-import { createCurrentDay } from './weatherDOM';
+import { createCurrentDay, createRemainderDays } from './weatherDOM';
 
 const searchField = document.querySelector('#search-wrapper__search-bar');
 
@@ -10,6 +10,7 @@ searchField.addEventListener('keydown', async (e) => {
     console.log(weatherData);
     const dayValue = determineDayOrNight(weatherData)
     createCurrentDay(weatherData)
+    createRemainderDays(weatherData)
     searchField.value = '';
   }
 });

@@ -187,7 +187,9 @@ padding: 1rem;
 .week-list__item {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
   flex-grow: 1;
   border-bottom: 1px solid var(--color-primary-dark);
 }
