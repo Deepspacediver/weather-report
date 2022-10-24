@@ -69,7 +69,7 @@ const appendRemainderOfDays = (arrayOfDays) => {
 
     // Temperature and Date
     const weekTemperatureSpan = document.createElement('span');
-    weekTemperatureSpan.classList.add('week-list_temperature-value');
+    weekTemperatureSpan.classList.add('week-list_temperature-value', 'tempDegree');
     weekTemperatureSpan.textContent = singleDay.temp;
     const weekDateSpan = document.createElement('span');
     weekDateSpan.classList.add('week-list__date');
@@ -101,8 +101,14 @@ const onLoadWeather = async () => {
     console.log(err);
   }
 };
-export { createCurrentDay, createRemainderDays };
+
+const generateCompleteWeather = (weatherAPIObject) => {
+  createCurrentDay(weatherAPIObject)
+  createRemainderDays(weatherAPIObject)
+}
 
 window.addEventListener('load', async () => {
   onLoadWeather();
 });
+
+export { createCurrentDay, createRemainderDays, generateCompleteWeather };

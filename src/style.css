@@ -1,5 +1,5 @@
 :root {
-  --color-primary-dark: #141414;
+  --color-primary-dark: rgb(20, 20, 20);
   --color-primary-grey: #676767;
   font-size: 1vw;
 }
@@ -96,6 +96,22 @@ li {
 .bold {
   font-weight: bold !important;
 }
+/* Unit Button styling*/
+.unit-btn {
+  cursor: pointer;
+  background-color: #c0c0c0;
+  font-weight: 0;
+}
+.unit-btn__celsius,
+.unit-btn__farenheit {
+  font-size: max(15px, 1rem);
+  font-weight: 100;
+  color: var(--color-primary-dark);
+}
+.unit-btn.celsius .unit-btn__celsius,
+.unit-btn.farenheit .unit-btn__farenheit{
+  font-weight: bold;
+}
 
 /* Main Content 
 \/ \/ \/ \/ \/ \/ \/ 
@@ -132,19 +148,20 @@ Current day section
 .day1-container__content {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 .weather-conditions {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-}
-.day1-container__icon-wrapper {
-  width: 5vw;
+  gap: .5rem;
 }
 .icon-wrapper__weather-icon {
-  height: auto;
+  height: 70%;
   max-width: 20%;
+  background-color: var(--color-primary-dark);
+  border-radius: 4rem;
 }
 .day1-coontainer__locale {
   display: flex;
@@ -206,6 +223,9 @@ padding: 1rem;
 .week-list__item-icon {
   height: auto;
   max-width: 4rem;
+  background-color: var(--color-primary-dark);
+  border-radius: 2rem;
+  margin-right: 1rem;
 }
 .week-list_temperature-value{
   text-align: center;
