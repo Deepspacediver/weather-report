@@ -26,6 +26,10 @@ const getSmallIcon = (iconId) => {
   return imgLink;
 };
 
+const clearElementChildren = (element) => {
+  while (element.lastChild) element.removeChild(element.lastChild);
+};
+
 const createCurrentDay = async (weatherResponse) => {
   try {
     const firstDayData = weatherResponse.firstDay;
@@ -42,71 +46,60 @@ const createCurrentDay = async (weatherResponse) => {
     dateEl.textContent = formatDate(convertedDateDay1);
     currentDayIcon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
   } catch (err) {
-    if (err === '404') console.log('404 it is');
+    if (err.code === '404') console.log('404 it is');
     console.log(err);
   }
 };
-const clearElementChildren = (element) => {
-  while(element.lastChild) element.removeChild(element.lastChild)
-}
+
+const appendRemainderOfDays = (arrayOfDays) => {
+  arrayOfDays.forEach((singleDay) => {
+    const itemWrapperLi = document.createElement('li');
+    itemWrapperLi.classList.add('week-list__item');
+
+    // Icon and Weather Description
+    const weatherWrapperDiv = document.createElement('div');
+    weatherWrapperDiv.classList.add('week-list__weather-wrapper');
+    const weatherIconImg = document.createElement('img');
+    weatherIconImg.classList.add('week-list__item-icon');
+    weatherIconImg.src = getSmallIcon(singleDay.iconId);
+    const weatherDescrSpan = document.createElement('span');
+    weatherDescrSpan.classList.add('week-list__weather-description');
+    weatherDescrSpan.textContent = singleDay.description;
+    weatherWrapperDiv.append(weatherIconImg, weatherDescrSpan);
+
+    // Temperature and Date
+    const weekTemperatureSpan = document.createElement('span');
+    weekTemperatureSpan.classList.add('week-list_temperature-value');
+    weekTemperatureSpan.textContent = singleDay.temp;
+    const weekDateSpan = document.createElement('span');
+    weekDateSpan.classList.add('week-list__date');
+    weekDateSpan.textContent = formatDate(singleDay.convertedDate);
+
+    weekListUl.appendChild(itemWrapperLi);
+    itemWrapperLi.append(weatherWrapperDiv, weekTemperatureSpan, weekDateSpan);
+  });
+};
+
 const createRemainderDays = async (weatherResponse) => {
   try {
     const remainderDaysData = await weatherResponse.remainderOfDays;
-    clearElementChildren(weekListUl)
-    remainderDaysData.forEach((singleDay) => {
-      const itemWrapperLi = document.createElement('li');
-      itemWrapperLi.classList.add('week-list__item');
-
-      // Icon and Weather Description
-      const weatherWrapperDiv = document.createElement('div');
-      weatherWrapperDiv.classList.add('week-list__weather-wrapper');
-      const weatherIconImg = document.createElement('img');
-      weatherIconImg.classList.add('week-list__item-icon');
-      weatherIconImg.src = getSmallIcon(singleDay.iconId);
-      const weatherDescrSpan = document.createElement('span');
-      weatherDescrSpan.classList.add('week-list__weather-description');
-      weatherDescrSpan.textContent = singleDay.description;
-      weatherWrapperDiv.append(weatherIconImg, weatherDescrSpan);
-
-      // Temperature and Date
-      const weekTemperatureSpan = document.createElement('span');
-      weekTemperatureSpan.classList.add('week-list_temperature-value');
-      weekTemperatureSpan.textContent = singleDay.temp;
-      const weekDateSpan = document.createElement('span');
-      weekDateSpan.classList.add('week-list__date');
-      weekDateSpan.textContent = formatDate(singleDay.convertedDate);
-
-      weekListUl.appendChild(itemWrapperLi);
-      itemWrapperLi.append(
-        weatherWrapperDiv,
-        weekTemperatureSpan,
-        weekDateSpan
-      );
-    });
+    clearElementChildren(weekListUl);
+    appendRemainderOfDays(remainderDaysData);
   } catch (err) {
     console.log(err);
   }
 };
+
 const onLoadWeather = async () => {
-  const londonBasicResponse = await getWeatherData('London');
-  const {
-    firstDay: {
-      locationInfo: { cityName, convertedDateDay1 },
-      weatherInfo: { description, humidity, iconId, temp, wind },
-    },
-  } = londonBasicResponse;
-  console.log(cityName);
-  /* const {
-    firstDay: { locationInfo: cityName, convertedDateDay1 },
-    firstDay: { weatherInfo: description, humidity, iconId, temp, wind },
-  } = londonBasicResponse; */
-  weatherDescriptionEl.textContent = description;
-  temperatureValueEl.textContent = temp;
-  humidityValueEl.textContent = humidity;
-  windValueEl.textContent = wind;
-  locationEl.textContent = cityName;
-  currentDayIcon.src = `http://openweathermap.org/img/wn/${iconId}@4x.png`;
-  dateEl.textContent = formatDate(convertedDateDay1);
+  // API Response for London
+  try {
+    const londonBasicResponse = await getWeatherData('London');
+
+    createCurrentDay(londonBasicResponse);
+    createRemainderDays(londonBasicResponse);
+  } catch (err) {
+    console.log(err);
+  }
 };
 export { createCurrentDay, createRemainderDays };
 

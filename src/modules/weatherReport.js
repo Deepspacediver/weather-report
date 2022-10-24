@@ -22,11 +22,12 @@ const getDataForFirstDay = (weatherResponse) => {
   const firstDay = {
     locationInfo: {
       cityName: weatherResponse.city.name,
-      sunrise: weatherResponse.city.sunrise,
+      timeOfDay: determineDayOrNight(weatherResponse.city.sunset),
+      /* sunrise: weatherResponse.city.sunrise,
       sunset: weatherResponse.city.sunset,
       date_txt: firstDayData.dt_txt,
-      date: firstDayData.dt,
-      timezone: weatherResponse.city.timezone,
+      date: firstDayData.dt, */
+      timezone: weatherResponse.city.timezone, 
       convertedDateDay1: convertToLocalTime(
         firstDayData.dt,
         weatherResponse.city.timezone
@@ -64,11 +65,11 @@ const getNextValidDays = (
       dateHourValue <= 13
     ) {
       const dayObject = {
-        date_txt: date.dt_txt,
-        date: date.dt,
+        /* date_txt: date.dt_txt,
+        date: date.dt, */
         convertedDate: convertToLocalTime(date.dt, zoneOffset),
         temp: date.main.temp + '°',
-        description:capitilizeFirstLetter(date.weather[0].description),
+        description: capitilizeFirstLetter(date.weather[0].description),
         iconId: date.weather[0].icon,
       };
       validDaysArray.push(dayObject);
@@ -98,12 +99,11 @@ const getWeatherData = async (cityName) => {
   }
 };
 
-const determineDayOrNight = (weatherData) => {
-  if (weatherData === undefined) return;
-  const sunsetValue = weatherData.firstDay.locationInfo.sunset;
+const determineDayOrNight = (sunset) => {
+  if (sunset === undefined) return;
 
   let timeOfDay;
-  if (new Date().valueOf() < sunsetValue * 1000) timeOfDay = 'day';
+  if (new Date().valueOf() < sunset * 1000) timeOfDay = 'day';
   else timeOfDay = 'night';
   return timeOfDay;
 };

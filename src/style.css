@@ -162,7 +162,7 @@ padding: 1rem;
 .week-container {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 45%;
   margin: 0 auto;
   border: 1rem solid var(--color-primary-dark);
   background-color: var(--color-primary-grey);
@@ -184,10 +184,14 @@ padding: 1rem;
   flex-grow: 1;
   font-size: 1.5rem;
 }
-.week-list__item {
+.week-list__item {/* 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns: 1fr .5fr 1fr;
+  justify-content: space-evenly;
+  align-items: center;
   padding-left: 1rem;
   padding-right: 1rem;
   flex-grow: 1;
@@ -200,8 +204,12 @@ padding: 1rem;
 }
 
 .week-list__item-icon {
-  margin-right: 1.5rem;
   height: auto;
-  align-self: top; 
   max-width: 4rem;
+}
+.week-list_temperature-value{
+  text-align: center;
+}
+.week-list__date{
+  margin-left: auto;
 }
