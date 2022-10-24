@@ -1,5 +1,6 @@
 import { getWeatherData, determineDayOrNight, } from './weatherReport';
 import { createCurrentDay, createRemainderDays, generateCompleteWeather } from './weatherDOM';
+import checkForFarenheit from './degreeUnitConversion';
 
 const searchField = document.querySelector('#search-wrapper__search-bar');
 
@@ -8,6 +9,7 @@ searchField.addEventListener('keydown', async (e) => {
     const cityName = e.target.value;
     const weatherData= await getWeatherData(cityName);
     console.log(weatherData);
+    checkForFarenheit(weatherData)
     generateCompleteWeather(weatherData)
     searchField.value = '';
   }

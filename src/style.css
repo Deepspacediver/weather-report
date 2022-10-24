@@ -112,6 +112,9 @@ li {
 .unit-btn.farenheit .unit-btn__farenheit{
   font-weight: bold;
 }
+.tempDegree::after{
+  content: '°';
+}
 
 /* Main Content 
 \/ \/ \/ \/ \/ \/ \/ 
