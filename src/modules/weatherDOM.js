@@ -2,6 +2,7 @@ import format from 'date-fns/format';
 import { divide } from 'lodash';
 import { getCurrentWeather, getWeatherData } from './weatherReport';
 
+const htmlElement = document.querySelector('html');
 const windValueEl = document.querySelector('.weather-conditions__wind-value');
 const locationEl = document.querySelector('.locale-wrapper__location');
 const dateEl = document.querySelector('.locale-wrapper__date');
@@ -69,7 +70,10 @@ const appendRemainderOfDays = (arrayOfDays) => {
 
     // Temperature and Date
     const weekTemperatureSpan = document.createElement('span');
-    weekTemperatureSpan.classList.add('week-list_temperature-value', 'tempDegree');
+    weekTemperatureSpan.classList.add(
+      'week-list_temperature-value',
+      'tempDegree'
+    );
     weekTemperatureSpan.textContent = singleDay.temp;
     const weekDateSpan = document.createElement('span');
     weekDateSpan.classList.add('week-list__date');
@@ -90,6 +94,11 @@ const createRemainderDays = async (weatherResponse) => {
   }
 };
 
+const generateCompleteWeather = (weatherAPIObject) => {
+   changeBackground(weatherAPIObject);
+  createCurrentDay(weatherAPIObject);
+  createRemainderDays(weatherAPIObject);
+};
 const onLoadWeather = async () => {
   // API Response for London
   try {
@@ -97,15 +106,20 @@ const onLoadWeather = async () => {
 
     createCurrentDay(londonBasicResponse);
     createRemainderDays(londonBasicResponse);
+    changeBackground(londonBasicResponse);
   } catch (err) {
     console.log(err);
   }
 };
 
-const generateCompleteWeather = (weatherAPIObject) => {
-  createCurrentDay(weatherAPIObject)
-  createRemainderDays(weatherAPIObject)
-}
+const changeBackground = (APIresponse) => {
+  if (APIresponse === undefined) return
+  const dayTime = APIresponse.firstDay.locationInfo.timeOfDay
+  console.log(dayTime)
+  if (dayTime === 'day') {
+    htmlElement.style.backgroundImage = 'url(a48ed727faa35f1b2a93.jpg)';
+  } else htmlElement.style.backgroundImage = 'url(2fff627216ea1d684cfa.jpg)';
+};
 
 window.addEventListener('load', async () => {
   onLoadWeather();
