@@ -23,10 +23,6 @@ const getDataForFirstDay = (weatherResponse) => {
     locationInfo: {
       cityName: weatherResponse.city.name,
       timeOfDay: determineDayOrNight(weatherResponse.city.sunset),
-      /* sunrise: weatherResponse.city.sunrise,
-      sunset: weatherResponse.city.sunset,
-      date_txt: firstDayData.dt_txt,
-      date: firstDayData.dt, */
       timezone: weatherResponse.city.timezone, 
       convertedDateDay1: convertToLocalTime(
         firstDayData.dt,
@@ -65,8 +61,6 @@ const getNextValidDays = (
       dateHourValue <= 13
     ) {
       const dayObject = {
-        /* date_txt: date.dt_txt,
-        date: date.dt, */
         convertedDate: convertToLocalTime(date.dt, zoneOffset),
         temp: date.main.temp,
         description: capitilizeFirstLetter(date.weather[0].description),

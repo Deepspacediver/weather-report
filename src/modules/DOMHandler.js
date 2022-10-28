@@ -15,4 +15,3 @@ searchField.addEventListener('keydown', async (e) => {
   }
 });
 
-// WeatherReport.getWeather(e.target.value)

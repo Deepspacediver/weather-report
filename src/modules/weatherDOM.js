@@ -1,5 +1,4 @@
 import format from 'date-fns/format';
-import { divide } from 'lodash';
 import { getCurrentWeather, getWeatherData } from './weatherReport';
 
 const htmlElement = document.querySelector('html');
