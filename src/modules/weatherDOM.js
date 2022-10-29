@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns';
 import format from 'date-fns/format';
 import { getCurrentWeather, getWeatherData } from './weatherReport';
 
@@ -43,7 +44,7 @@ const createCurrentDay = async (weatherResponse) => {
     humidityValueEl.textContent = humidity;
     windValueEl.textContent = wind;
     locationEl.textContent = cityName;
-    dateEl.textContent = formatDate(convertedDateDay1);
+    dateEl.textContent = formatDate(convertedDateDay1)//new Date(convertedDateDay1).toUTCString().slice(0,16)
     currentDayIcon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
   } catch (err) {
     if (err.code === '404') console.log('404 it is');

@@ -14,9 +14,7 @@ body {
 }
 html {
   background-color: var(--color-primary-dark);
-   /*background-image: url('./assets/images/pexels-lukas-296234.jpg'); 
-  background-image: url('./assets/images/david-becker-V862kywlKkw-unsplash.jpg');*/
-  background-color: pink;
+  background-color:var(--color-primary-dark);
   background-size: cover;
   background-position: 10%;
   background-repeat: no-repeat;
@@ -204,10 +202,7 @@ padding: 1rem;
   flex-grow: 1;
   font-size: 1.5rem;
 }
-.week-list__item {/* 
-  display: flex;
-  align-items: center;
-  justify-content: space-around; */
+.week-list__item {
   display: grid;
   grid-template-columns: 1fr .5fr 1fr;
   justify-content: space-evenly;
@@ -235,4 +230,5 @@ padding: 1rem;
 }
 .week-list__date{
   margin-left: auto;
+  font-size: 1.2rem;
 }

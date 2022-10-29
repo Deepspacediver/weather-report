@@ -114,4 +114,7 @@ const convertToLocalTime = (dt, offset) => {
   return converetedUTCDate;
 };
 
+/* const getHoursMinutes = (date) => {
+  return 
+} */
 export { getCurrentWeather, getWeatherData, determineDayOrNight };
