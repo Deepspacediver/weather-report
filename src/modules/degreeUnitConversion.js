@@ -5,10 +5,12 @@ const applyConversion = (tempArray, conversion) => {
     temp.textContent = conversion(temp.textContent);
   });
 };
+
 const convertToCelsius = (farenheitValue) => {
   const newCelsiusValue = ((farenheitValue - 32) * 5) / 9;
   return newCelsiusValue.toFixed(2);
 };
+
 const convertToFarenheit = (celsiusValue) => {
   const newFarenheitValue = celsiusValue * 1.8 + 32;
   return newFarenheitValue.toFixed(2);
@@ -33,15 +35,19 @@ unitButton.addEventListener('click', (e) => {
   }
 });
 
-const checkForFarenheit = (weatherResponse) => {
-  if (weatherResponse === undefined) return;
-  if (unitButton.classList.contains('farenheit') === true) {
-    weatherResponse.firstDay.weatherInfo.temp = convertToFarenheit(
-      weatherResponse.firstDay.weatherInfo.temp
-    );
-    weatherResponse.remainderOfDays.forEach((day) => {
-      day.temp = convertToFarenheit(day.temp);
-    });
+const checkForFarenheit = async (APIData) => {
+  try {
+    const weatherResponse = await APIData;
+    if (unitButton.classList.contains('farenheit') === true) {
+      weatherResponse.firstDay.weatherInfo.temp = convertToFarenheit(
+        weatherResponse.firstDay.weatherInfo.temp
+      );
+      weatherResponse.remainderOfDays.forEach((day) => {
+        day.temp = convertToFarenheit(day.temp);
+      });
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 export default checkForFarenheit;
