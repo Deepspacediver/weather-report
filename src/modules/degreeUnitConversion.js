@@ -4,7 +4,6 @@ const applyConversion = (tempArray, conversion) => {
   tempArray.forEach((temp) => {
     temp.textContent = conversion(temp.textContent);
   });
-
 };
 const convertToCelsius = (farenheitValue) => {
   const newCelsiusValue = ((farenheitValue - 32) * 5) / 9;
@@ -35,7 +34,7 @@ unitButton.addEventListener('click', (e) => {
 });
 
 const checkForFarenheit = (weatherResponse) => {
-  if(weatherResponse === undefined) return
+  if (weatherResponse === undefined) return;
   if (unitButton.classList.contains('farenheit') === true) {
     weatherResponse.firstDay.weatherInfo.temp = convertToFarenheit(
       weatherResponse.firstDay.weatherInfo.temp
@@ -45,5 +44,4 @@ const checkForFarenheit = (weatherResponse) => {
     });
   }
 };
-export default checkForFarenheit
-// Fix conversion when changing Measuring Unit and inputting new Location
+export default checkForFarenheit;
