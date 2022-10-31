@@ -78,7 +78,7 @@ const appendRemainderOfDays = (arrayOfDays) => {
     weekTemperatureSpan.textContent = singleDay.temp;
     const weekDateSpan = document.createElement('span');
     weekDateSpan.classList.add('week-list__date');
-    weekDateSpan.textContent = formatDate(singleDay.convertedDate) + singleDay.convertedDate.getUTCDate();
+    weekDateSpan.textContent = formatDate(singleDay.convertedDate)// + singleDay.convertedDate.getUTCDate();
 
     weekListUl.appendChild(itemWrapperLi);
     itemWrapperLi.append(weatherWrapperDiv, weekTemperatureSpan, weekDateSpan);

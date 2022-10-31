@@ -38,9 +38,9 @@ li {
   justify-content: center;
   gap: 5%;
   margin-bottom: 5px;
+  padding: .5rem;
   padding-left: 15px;
   padding-right: 15px;
-
   background-color: var(--color-primary-dark);
   border-bottom: 1px solid var(--color-primary-dark);
   opacity: 0.9;
@@ -95,8 +95,7 @@ li {
   display: flex;
   justify-content: center;
   gap: 5%;
-  padding: 0.5rem;
-  width: 5%;
+  padding: min(8px, 1rem);
   font-size: clamp(15px, 50%, 1rem);
   cursor: pointer;
   background-color: #c0c0c0;
