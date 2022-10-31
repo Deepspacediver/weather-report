@@ -1,4 +1,3 @@
-import { parseISO } from 'date-fns';
 import format from 'date-fns/format';
 import { getCurrentWeather, getWeatherData } from './weatherReport';
 
@@ -17,6 +16,7 @@ const temperatureValueEl = document.querySelector(
 const humidityValueEl = document.querySelector(
   '.weather-conditions__humidity-value'
 );
+const timeValueEl = document.querySelector('.locale-wrapper__time')
 
 const formatDate = (date) => {
   const formatedDate = format(date, 'EEEE, do MMMM');
@@ -44,7 +44,8 @@ const createCurrentDay = async (weatherResponse) => {
     humidityValueEl.textContent = humidity;
     windValueEl.textContent = wind;
     locationEl.textContent = cityName;
-    dateEl.textContent = formatDate(convertedDateDay1)//new Date(convertedDateDay1).toUTCString().slice(0,16)
+    timeValueEl.textContent = convertedDateDay1.getUTCHours() + ':' + convertedDateDay1.getUTCMinutes() +'0';
+    dateEl.textContent =formatDate(convertedDateDay1)//new Date(convertedDateDay1).toUTCString().slice(0,16)
     currentDayIcon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
   } catch (err) {
     if (err.code === '404') console.log('404 it is');
@@ -77,7 +78,7 @@ const appendRemainderOfDays = (arrayOfDays) => {
     weekTemperatureSpan.textContent = singleDay.temp;
     const weekDateSpan = document.createElement('span');
     weekDateSpan.classList.add('week-list__date');
-    weekDateSpan.textContent = formatDate(singleDay.convertedDate);
+    weekDateSpan.textContent = formatDate(singleDay.convertedDate) + singleDay.convertedDate.getUTCDate();
 
     weekListUl.appendChild(itemWrapperLi);
     itemWrapperLi.append(weatherWrapperDiv, weekTemperatureSpan, weekDateSpan);

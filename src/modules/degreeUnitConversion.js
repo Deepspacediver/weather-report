@@ -5,7 +5,6 @@ const applyConversion = (tempArray, conversion) => {
     temp.textContent = conversion(temp.textContent);
   });
 
-  console.log(allTemperatureElements);
 };
 const convertToCelsius = (farenheitValue) => {
   const newCelsiusValue = ((farenheitValue - 32) * 5) / 9;
@@ -36,6 +35,7 @@ unitButton.addEventListener('click', (e) => {
 });
 
 const checkForFarenheit = (weatherResponse) => {
+  if(weatherResponse === undefined) return
   if (unitButton.classList.contains('farenheit') === true) {
     weatherResponse.firstDay.weatherInfo.temp = convertToFarenheit(
       weatherResponse.firstDay.weatherInfo.temp

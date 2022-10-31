@@ -80,6 +80,7 @@ li {
 .search-wrapper__search-btn {
   font-size: clamp(15px, 50%, 1rem);
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .unit-btn {
@@ -113,7 +114,12 @@ li {
 .tempDegree::after{
   content: '°';
 }
-
+.weather-conditions__wind-value::after {
+  content:' m/s'
+}
+.weather-conditions__humidity-value::after{
+  content:'%'
+}
 /* Main Content 
 \/ \/ \/ \/ \/ \/ \/ 
 Current day section
