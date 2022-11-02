@@ -79,7 +79,12 @@ li {
   border: 1px solid black;
   
 }
-
+#search-wrapper__search-bar:focus{
+  outline: none;
+  border: 3px solid #676767;
+  border-radius: 3px;
+  background-color: #F8F8FF
+}
 .search-wrapper__search-btn {
   font-size: clamp(15px, 50%, 1rem);
   padding: 0.6rem;
@@ -88,7 +93,9 @@ li {
   font-weight: 300;
   color: var(--color-primary-dark);
 }
-
+.search-wrapper__search-btn:hover {
+  border: 1.5px solid #676767;
+}
 
 /* Unit Button styling*/
 .unit-btn {

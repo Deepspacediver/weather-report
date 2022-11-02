@@ -16,7 +16,7 @@ const temperatureValueEl = document.querySelector(
 const humidityValueEl = document.querySelector(
   '.weather-conditions__humidity-value'
 );
-const timeValueEl = document.querySelector('.locale-wrapper__time')
+const timeValueEl = document.querySelector('.locale-wrapper__time');
 
 const formatDate = (date) => {
   const formatedDate = format(date, 'EEEE, do MMMM');
@@ -44,8 +44,12 @@ const createCurrentDay = async (weatherResponse) => {
     humidityValueEl.textContent = humidity;
     windValueEl.textContent = wind;
     locationEl.textContent = cityName;
-    timeValueEl.textContent = convertedDateDay1.getUTCHours() + ':' + convertedDateDay1.getUTCMinutes() +'0';
-    dateEl.textContent =formatDate(convertedDateDay1)//new Date(convertedDateDay1).toUTCString().slice(0,16)
+    timeValueEl.textContent =
+      convertedDateDay1.getUTCHours() +
+      ':' +
+      convertedDateDay1.getUTCMinutes() +
+      '0';
+    dateEl.textContent = formatDate(convertedDateDay1); //new Date(convertedDateDay1).toUTCString().slice(0,16)
     currentDayIcon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
   } catch (err) {
     if (err.code === '404') console.log('404 it is');
@@ -78,7 +82,7 @@ const appendRemainderOfDays = (arrayOfDays) => {
     weekTemperatureSpan.textContent = singleDay.temp;
     const weekDateSpan = document.createElement('span');
     weekDateSpan.classList.add('week-list__date');
-    weekDateSpan.textContent = formatDate(singleDay.convertedDate)// + singleDay.convertedDate.getUTCDate();
+    weekDateSpan.textContent = formatDate(singleDay.convertedDate); // + singleDay.convertedDate.getUTCDate();
 
     weekListUl.appendChild(itemWrapperLi);
     itemWrapperLi.append(weatherWrapperDiv, weekTemperatureSpan, weekDateSpan);
@@ -96,7 +100,7 @@ const createRemainderDays = async (weatherResponse) => {
 };
 
 const generateCompleteWeather = (weatherAPIObject) => {
-   changeBackground(weatherAPIObject);
+  changeBackground(weatherAPIObject);
   createCurrentDay(weatherAPIObject);
   createRemainderDays(weatherAPIObject);
 };
@@ -114,9 +118,9 @@ const onLoadWeather = async () => {
 };
 
 const changeBackground = (APIresponse) => {
-  if (APIresponse === undefined) return
-  const dayTime = APIresponse.firstDay.locationInfo.timeOfDay
-  console.log(dayTime)
+  if (APIresponse === undefined) return;
+  const dayTime = APIresponse.firstDay.locationInfo.timeOfDay;
+  console.log(dayTime);
   if (dayTime === 'day') {
     htmlElement.style.backgroundImage = 'url(a48ed727faa35f1b2a93.jpg)';
   } else htmlElement.style.backgroundImage = 'url(2fff627216ea1d684cfa.jpg)';
