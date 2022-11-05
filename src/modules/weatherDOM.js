@@ -1,5 +1,5 @@
 import format from 'date-fns/format';
-import { getCurrentWeather, getWeatherData } from './weatherReport';
+import { convertWeatherData} from './weatherReport';
 
 const htmlElement = document.querySelector('html');
 const windValueEl = document.querySelector('.weather-conditions__wind-value');
@@ -22,6 +22,7 @@ const formatDate = (date) => {
   const formatedDate = format(date, 'EEEE, do MMMM');
   return formatedDate;
 };
+
 const getSmallIcon = (iconId) => {
   const imgLink = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
   return imgLink;
@@ -89,6 +90,15 @@ const appendRemainderOfDays = (arrayOfDays) => {
   });
 };
 
+const changeBackground = (APIresponse) => {
+  if (APIresponse === undefined) return;
+  const dayTime = APIresponse.firstDay.locationInfo.timeOfDay;
+  console.log(dayTime);
+  if (dayTime === 'day') {
+    htmlElement.style.backgroundImage = 'url(a48ed727faa35f1b2a93.jpg)';
+  } else htmlElement.style.backgroundImage = 'url(2fff627216ea1d684cfa.jpg)';
+};
+
 const createRemainderDays = async (weatherResponse) => {
   try {
     const remainderDaysData = await weatherResponse.remainderOfDays;
@@ -104,30 +114,18 @@ const generateCompleteWeather = (weatherAPIObject) => {
   createCurrentDay(weatherAPIObject);
   createRemainderDays(weatherAPIObject);
 };
+
 const onLoadWeather = async () => {
   // API Response for London
   try {
-    const londonBasicResponse = await getWeatherData('London');
-
-    createCurrentDay(londonBasicResponse);
-    createRemainderDays(londonBasicResponse);
-    changeBackground(londonBasicResponse);
+    const londonBasicResponse = await convertWeatherData('London');
+    generateCompleteWeather(londonBasicResponse);
   } catch (err) {
     console.log(err);
   }
 };
 
-const changeBackground = (APIresponse) => {
-  if (APIresponse === undefined) return;
-  const dayTime = APIresponse.firstDay.locationInfo.timeOfDay;
-  console.log(dayTime);
-  if (dayTime === 'day') {
-    htmlElement.style.backgroundImage = 'url(a48ed727faa35f1b2a93.jpg)';
-  } else htmlElement.style.backgroundImage = 'url(2fff627216ea1d684cfa.jpg)';
-};
-
-window.addEventListener('load', async () => {
-  onLoadWeather();
-});
+//  Removed async arrow function
+window.addEventListener('load', onLoadWeather);
 
 export { createCurrentDay, createRemainderDays, generateCompleteWeather };

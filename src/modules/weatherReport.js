@@ -14,11 +14,12 @@ const getCurrentWeather = async (city) => {
     console.log(err.code);
   }
 };
+
 const capitilizeFirstLetter = (string) =>
   string.slice(0, 1).toUpperCase() + string.slice(1);
 
 const getDataForFirstDay = (weatherResponse) => {
-  const firstDayData = weatherResponse.list[0];;
+  const firstDayData = weatherResponse.list[0];
   const firstDay = {
     locationInfo: {
       cityName: weatherResponse.city.name,
@@ -40,14 +41,14 @@ const getDataForFirstDay = (weatherResponse) => {
   return firstDay;
 };
 
-const getNextValidDays = (
+const getRemainderDays = (
   { locationInfo: { convertedDateDay1, timezone } },
   { list }
 ) => {
   const validDaysArray = [];
   const zoneOffset = timezone;
   const currentDateDayValue = convertedDateDay1.getUTCDay();
-  console.log({currentDateDayValue})
+  console.log({ currentDateDayValue });
   const weekRemainder = list.slice(1);
 
   // Loop through the 3 hour dates
@@ -75,16 +76,16 @@ const getNextValidDays = (
   return validDaysArray;
 };
 
-const getWeatherData = async (cityName) => {
+const convertWeatherData = async (cityName) => {
   try {
     const weatherResponse = await getCurrentWeather(cityName);
     const weatherData = await weatherResponse.json();
-    console.log(weatherData)
+    console.log(weatherData);
     /* Return data: as an object ->
        General data and info for the current day, 2nd item is an array of Next days 
     */
     const firstDay = getDataForFirstDay(weatherData);
-    const remainderOfDays = getNextValidDays(firstDay, weatherData);
+    const remainderOfDays = getRemainderDays(firstDay, weatherData);
     const dataObject = {
       firstDay,
       remainderOfDays,
@@ -117,4 +118,4 @@ const convertToLocalTime = (dt, offset) => {
   return converetedUTCDate;
 };
 
-export { getCurrentWeather, getWeatherData, determineDayOrNight };
+export { getCurrentWeather, convertWeatherData, determineDayOrNight };
